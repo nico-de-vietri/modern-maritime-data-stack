@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+.env
+.env.*
+
+# VSCode
+.vscode/
+
+# DBT
+dbt_modules/
+dbt_packages/
+
+# MinIO
+minio/data/
+
+# Airflow
+airflow/logs/
+airflow/airflow.db
+airflow/venv/
+
+# Superset
+superset_home/
