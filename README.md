@@ -36,16 +36,18 @@ Este proyecto crea un pipeline analítico simulando tráfico marítimo, utilizan
 
 ## 📁 Estructura del proyecto
 
+
+
+
 modern-maritime-data-stack/
 │
 ├── data_collector/ # Scripts para consumir datos (API o fake)
-│ └── main.py
 ├── astro/ # Proyecto Airflow
 ├── dbt/ # Proyecto DBT
 ├── superset/ # Configuración de dashboards
 ├── setup.sh # Script para configurar entorno local
 ├── requirements.txt # Librerías necesarias
-├── .env # Variables de entorno (NO subir al repo)
+├── .env # Variables de entorno (NO subidas al repo)
 ├── .gitignore
 └── README.md
 
