@@ -1,0 +1,9 @@
+# Astro Runtime includes the following pre-installed providers packages: https://www.astronomer.io/docs/astro/runtime-image-architecture#provider-packages
+requests
+python-dotenv
+pandas
+boto3 # to interact with MinIO from Python
+websockets
+minio
+#psycopg2-binary
+apache-airflow-providers-airbyte

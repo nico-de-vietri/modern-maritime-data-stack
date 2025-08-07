@@ -12,6 +12,7 @@ __pycache__/
 *.db
 .env
 .env.*
+venv/
 
 # VSCode
 .vscode/

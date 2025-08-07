@@ -1,4 +1,0 @@
-websockets
-boto3
-python-dotenv
-
