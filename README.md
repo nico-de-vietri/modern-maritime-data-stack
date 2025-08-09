@@ -47,25 +47,17 @@ All services are attached to an external Docker network named `airbyte-net` for 
 
 ## Setup Instructions
 
-1. **Clone the repo:**
-
-   ```bash
-   git clone <your-repo-url>
-   cd <your-repo-folder>
-
-
-
 ---
 
-## ⚙️ Requisitos
+## ⚙️ Requirements
 
 - Python 3.8 o superior
 - Git
-- macOS, Linux, o Windows (con WSL o Git Bash)
-
+- macOS, Linux, o Windows (with WSL)
+- Docker
 ---
 
-## 🚀 Instalación (1 minuto)
+## Instalation (1 minute)
 
 1. Clona el repositorio:
 
@@ -92,7 +84,7 @@ Esto hará:
 
     Instalar dependencias
 
-🛠️ Uso
+Uso
 
 Desde la root del proyecto, activa el entorno y ejecuta el colector:
 
@@ -100,10 +92,9 @@ source venv/bin/activate
 python data_collector/main.py
 
 Próximamente: DAGs en Airflow, transformaciones con DBT, dashboards en Superset.
-🧾 Licencia
+Licencia
 
 Este proyecto está bajo la licencia MIT. Ver archivo LICENSE.
 
-✍️ Autor
-
-Tu nombre — @nico-de-vietri
+Autor
+@nico-de-vietri
