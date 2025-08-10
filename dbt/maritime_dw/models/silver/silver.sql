@@ -8,13 +8,17 @@ with bronze as (
     select
         unique_row_id,
         user_id,
-        name,
+        trim(name) as name,
         imo_number,
         latitude::float,
         longitude::float,
         speed_over_ground,
         navigational_status::int,
         destination,
+        dimension_length::int,
+        dimension_width::int,
+        left(user_id::text, 3)::int as mid,
+        
 
         -- ETA components
         nullif((eta->>'Month')::int, 0) as eta_month,
@@ -60,10 +64,13 @@ with bronze as (
 silver as (
     select
         b.*,
-        s.vessel_group AS vessel_description
+        s.vessel_group as vessel_description,
+        c.country as flag_country
     from bronze b
     left join {{ ref('ship_types') }} s
       on b.type = s.vessel_type
+    left join {{ ref('mid_country') }} c
+        on b.mid = c.mid
 )
 
 select *

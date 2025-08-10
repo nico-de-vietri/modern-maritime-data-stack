@@ -2,7 +2,7 @@ version: 2
 
 seeds:
   - name: ship_types
-    description: "Catálogo de tipos de barcos desde CSV externo"
+    description: "ship types"
     columns:
       - name: vessel_type
         description: "numeric code"
