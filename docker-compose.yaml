@@ -61,7 +61,8 @@ services:
     volumes:
       - ./dbt:/app       # <-- project code and models synced with the container
       - ~/.dbt:/root/.dbt # <-- user config and credentials synced with the container
-   
+    ports:
+      - "8085:8080"
     tty: true
     networks:
       - airbyte-net

@@ -8,3 +8,7 @@ dbt-core
 dbt-postgres
 # dbt-duckdb
 # duckdb
+pandas
+sqlalchemy
+psycopg2-binary
+great_expectations

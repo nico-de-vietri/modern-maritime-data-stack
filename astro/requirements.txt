@@ -5,5 +5,10 @@ pandas
 boto3 # to interact with MinIO from Python
 websockets
 minio
-#psycopg2-binary
 apache-airflow-providers-airbyte
+dbt-core
+dbt-postgres
+pandas
+sqlalchemy
+psycopg2-binary
+great_expectations

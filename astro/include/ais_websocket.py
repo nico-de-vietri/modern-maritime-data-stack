@@ -60,25 +60,35 @@ async def process_message(message):
     return cache[user_id]
 
 
-async def listen_and_process(process_fn, listen_seconds=30):
-    try:
-        async with websockets.connect("wss://stream.aisstream.io/v0/stream") as ws:
-            await ws.send(get_subscribe_message())
-            print("✅ Suscripction sent...")
+async def listen_and_process(process_fn, listen_seconds=30, max_retries=5):
+    retries = 0
+    while retries < max_retries:
+        try:
+            async with websockets.connect("wss://stream.aisstream.io/v0/stream") as ws:
+                await ws.send(get_subscribe_message())
+                print("✅ Suscripction sent...")
 
-            start_time = datetime.now()
-            while (datetime.now() - start_time).total_seconds() < listen_seconds:
-                try:
-                    raw = await ws.recv()
-                    msg = json.loads(raw)
-                    fused_data = await process_message(msg)
-                    if fused_data:
-                        await process_fn(fused_data)
-                except Exception as e:
-                    print(f"⚠️ Error processing menssage: {e}")
-
-    except Exception as e:
-        print(f"❌ WebSocket error: {e}")
+                start_time = datetime.now()
+                while (datetime.now() - start_time).total_seconds() < listen_seconds:
+                    try:
+                        raw = await ws.recv()
+                        msg = json.loads(raw)
+                        fused_data = await process_message(msg)
+                        if fused_data:
+                            await process_fn(fused_data)
+                    except Exception as e:
+                        print(f"⚠️ Error processing menssage: {e}")
+                        # break
+            retries = 0
+            break
+        except Exception as e:
+            print(f"❌ WebSocket error: {e}")
+            retries += 1
+            wait_time = 2**retries  # backoff exponential
+            print(f"Reconnecting in {wait_time} seconds...")
+            await asyncio.sleep(wait_time)
+    if retries == max_retries:
+        print("Could not connect after several tries")
 
 
 # import asyncio
