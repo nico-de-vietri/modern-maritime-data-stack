@@ -61,17 +61,57 @@ with bronze as (
 
 ),
 
-silver as (
+enriched as (
     select
         b.*,
         s.vessel_group as vessel_description,
-        c.country as flag_country
+        c.country as flag_country,
+        -- Normalize and clean the destination field
+        trim(upper(b.destination)) as destination_clean,
+
+        -- Extract parts for fuzzy match
+        split_part(trim(upper(b.destination)), ' ', 1) as dest_country_guess,
+        split_part(trim(upper(b.destination)), ' ', 2) as dest_loc_guess
+
     from bronze b
     left join {{ ref('ship_types') }} s
       on b.type = s.vessel_type
     left join {{ ref('mid_country') }} c
         on b.mid = c.mid
+),
+
+ports as (
+    select 
+        upper(trim(name)) as port_name,
+        upper(trim(location)) as location_code,
+        upper(trim(country_code)) as country_code
+        
+    from {{ ref('port_codes') }}
+),
+
+-- Match on name first, fallback on location and country
+silver as (
+    select
+        e.*,
+        coalesce(
+            p1.country_code, 
+            p2.country_code
+        ) as destination_country,
+        coalesce(
+            p1.port_name,
+            p2.port_name
+        ) as matched_port
+
+    from enriched e
+
+    -- Primary match on cleaned destination name
+    left join ports p1
+        on e.destination_clean = p1.port_name
+
+    -- Fallback: match on country & location code
+    left join ports p2
+        on e.dest_country_guess = p2.country_code
+        and e.dest_loc_guess = p2.location_code
 )
 
-select *
-from silver
+select * from silver

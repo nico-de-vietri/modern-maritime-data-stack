@@ -1,0 +1,21 @@
+version: 2
+
+seeds:
+  - name: port_codes
+    description: "dataset with port codes"
+    columns:
+      - name: country_code
+        description: "2 digit international country code"
+        tests:
+          - not_null
+          - unique
+      - name: location
+        description: "Port code"
+        tests:
+          - not_null
+      - name: name
+        description: "Port name"
+        tests:
+          - not_null
+      - name: coordinates
+        description: "Coordinates"
