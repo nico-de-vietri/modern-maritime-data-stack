@@ -1,0 +1,1027 @@
+vessel_type,vessel_group,ais_ship_cargo_classification
+0,Not Available,Not available or no ship default
+1,Other,Reserved for future use
+2,Other,Reserved for future use
+3,Other,Reserved for future use
+4,Other,Reserved for future use
+5,Other,Reserved for future use
+6,Other,Reserved for future use
+7,Other,Reserved for future use
+8,Other,Reserved for future use
+9,Other,Reserved for future use
+10,Other,Reserved for future use
+11,Other,Reserved for future use
+12,Other,Reserved for future use
+13,Other,Reserved for future use
+14,Other,Reserved for future use
+15,Other,Reserved for future use
+16,Other,Reserved for future use
+17,Other,Reserved for future use
+18,Other,Reserved for future use
+19,Other,Reserved for future use
+20,Other,Wing in ground (WIG) all ships of this type
+21,Tug Tow,Wing in ground (WIG) hazardous category A
+22,Tug Tow,Wing in ground (WIG) hazardous category B
+23,Other,Wing in ground (WIG) hazardous category C
+24,Other,Wing in ground (WIG) hazardous category D
+25,Other,Wing in ground (WIG) reserved for future use
+26,Other,Wing in ground (WIG) reserved for future use
+27,Other,Wing in ground (WIG) reserved for future use
+28,Other,Wing in ground (WIG) reserved for future use
+29,Other,Wing in ground (WIG) reserved for future use
+30,Fishing,Fishing
+31,Tug Tow,Towing
+32,Tug Tow,Towing: length exceeds 200m or breadth exceeds 25m
+33,Other,Dredging or underwater operations
+34,Other,Diving operations
+35,Military,Military operations
+36,Pleasure Craft/Sailing,Sailing
+37,Pleasure Craft/Sailing,Pleasure Craft
+38,Other,Reserved
+39,Other,Reserved
+40,Other,High speed craft (HSC) all ships of this type
+41,Other,High speed craft (HSC) hazardous category A
+42,Other,High speed craft (HSC) hazardous category B
+43,Other,High speed craft (HSC) hazardous category C
+44,Other,High speed craft (HSC) hazardous category D
+45,Other,High speed craft (HSC) reserved for future use
+46,Other,High speed craft (HSC) reserved for future use
+47,Other,High speed craft (HSC) reserved for future use
+48,Other,High speed craft (HSC) reserved for future use
+49,Other,High speed craft (HSC) no additional information
+50,Other,Pilot Vessel
+51,Other,Search and Rescue vessel
+52,Tug Tow,Tug
+53,Other,Port Tender
+54,Other,Anti-pollution equipment
+55,Other,Law Enforcement
+56,Other,Spare - for assignment to local vessel
+57,Other,Spare - for assignment to local vessel
+58,Other,Medical Transport
+59,Other,Ship according to RR Resolution No. 18
+60,Passenger,Passenger all ships of this type
+61,Passenger,Passenger hazardous category A
+62,Passenger,Passenger hazardous category B
+63,Passenger,Passenger hazardous category C
+64,Passenger,Passenger hazardous category D
+65,Passenger,Passenger reserved for future use
+66,Passenger,Passenger reserved for future use
+67,Passenger,Passenger reserved for future use
+68,Passenger,Passenger reserved for future use
+69,Passenger,Passenger no additional information
+70,Cargo,Cargo all ships of this type
+71,Cargo,Cargo hazardous category A
+72,Cargo,Cargo hazardous category B
+73,Cargo,Cargo hazardous category C
+74,Cargo,Cargo hazardous category D
+75,Cargo,Cargo reserved for future use
+76,Cargo,Cargo reserved for future use
+77,Cargo,Cargo reserved for future use
+78,Cargo,Cargo reserved for future use
+79,Cargo,Cargo no additional information
+80,Tanker,Tanker all ships of this type
+81,Tanker,Tanker hazardous category A
+82,Tanker,Tanker hazardous category B
+83,Tanker,Tanker hazardous category C
+84,Tanker,Tanker hazardous category D
+85,Tanker,Tanker reserved for future use
+86,Tanker,Tanker reserved for future use
+87,Tanker,Tanker reserved for future use
+88,Tanker,Tanker reserved for future use
+89,Tanker,Tanker no additional information
+90,Other,Other Type all ships of this type
+91,Other,Other Type hazardous category A
+92,Other,Other Type hazardous category B
+93,Other,Other Type hazardous category C
+94,Other,Other Type hazardous category D
+95,Other,Other Type reserved for future use
+96,Other,Other Type reserved for future use
+97,Other,Other Type reserved for future use
+98,Other,Other Type reserved for future use
+99,Other,Other Type no additional information
+100,Other,Reserved for regional use
+101,Other,Reserved for regional use
+102,Other,Reserved for regional use
+103,Other,Reserved for regional use
+104,Other,Reserved for regional use
+105,Other,Reserved for regional use
+106,Other,Reserved for regional use
+107,Other,Reserved for regional use
+108,Other,Reserved for regional use
+109,Other,Reserved for regional use
+110,Other,Reserved for regional use
+111,Other,Reserved for regional use
+112,Other,Reserved for regional use
+113,Other,Reserved for regional use
+114,Other,Reserved for regional use
+115,Other,Reserved for regional use
+116,Other,Reserved for regional use
+117,Other,Reserved for regional use
+118,Other,Reserved for regional use
+119,Other,Reserved for regional use
+120,Other,Reserved for regional use
+121,Other,Reserved for regional use
+122,Other,Reserved for regional use
+123,Other,Reserved for regional use
+124,Other,Reserved for regional use
+125,Other,Reserved for regional use
+126,Other,Reserved for regional use
+127,Other,Reserved for regional use
+128,Other,Reserved for regional use
+129,Other,Reserved for regional use
+130,Other,Reserved for regional use
+131,Other,Reserved for regional use
+132,Other,Reserved for regional use
+133,Other,Reserved for regional use
+134,Other,Reserved for regional use
+135,Other,Reserved for regional use
+136,Other,Reserved for regional use
+137,Other,Reserved for regional use
+138,Other,Reserved for regional use
+139,Other,Reserved for regional use
+140,Other,Reserved for regional use
+141,Other,Reserved for regional use
+142,Other,Reserved for regional use
+143,Other,Reserved for regional use
+144,Other,Reserved for regional use
+145,Other,Reserved for regional use
+146,Other,Reserved for regional use
+147,Other,Reserved for regional use
+148,Other,Reserved for regional use
+149,Other,Reserved for regional use
+150,Other,Reserved for regional use
+151,Other,Reserved for regional use
+152,Other,Reserved for regional use
+153,Other,Reserved for regional use
+154,Other,Reserved for regional use
+155,Other,Reserved for regional use
+156,Other,Reserved for regional use
+157,Other,Reserved for regional use
+158,Other,Reserved for regional use
+159,Other,Reserved for regional use
+160,Other,Reserved for regional use
+161,Other,Reserved for regional use
+162,Other,Reserved for regional use
+163,Other,Reserved for regional use
+164,Other,Reserved for regional use
+165,Other,Reserved for regional use
+166,Other,Reserved for regional use
+167,Other,Reserved for regional use
+168,Other,Reserved for regional use
+169,Other,Reserved for regional use
+170,Other,Reserved for regional use
+171,Other,Reserved for regional use
+172,Other,Reserved for regional use
+173,Other,Reserved for regional use
+174,Other,Reserved for regional use
+175,Other,Reserved for regional use
+176,Other,Reserved for regional use
+177,Other,Reserved for regional use
+178,Other,Reserved for regional use
+179,Other,Reserved for regional use
+180,Other,Reserved for regional use
+181,Other,Reserved for regional use
+182,Other,Reserved for regional use
+183,Other,Reserved for regional use
+184,Other,Reserved for regional use
+185,Other,Reserved for regional use
+186,Other,Reserved for regional use
+187,Other,Reserved for regional use
+188,Other,Reserved for regional use
+189,Other,Reserved for regional use
+190,Other,Reserved for regional use
+191,Other,Reserved for regional use
+192,Other,Reserved for regional use
+193,Other,Reserved for regional use
+194,Other,Reserved for regional use
+195,Other,Reserved for regional use
+196,Other,Reserved for regional use
+197,Other,Reserved for regional use
+198,Other,Reserved for regional use
+199,Other,Reserved for regional use
+200,Other,Reserved for future use
+201,Other,Reserved for future use
+202,Other,Reserved for future use
+203,Other,Reserved for future use
+204,Other,Reserved for future use
+205,Other,Reserved for future use
+206,Other,Reserved for future use
+207,Other,Reserved for future use
+208,Other,Reserved for future use
+209,Other,Reserved for future use
+210,Other,Reserved for future use
+211,Other,Reserved for future use
+212,Other,Reserved for future use
+213,Other,Reserved for future use
+214,Other,Reserved for future use
+215,Other,Reserved for future use
+216,Other,Reserved for future use
+217,Other,Reserved for future use
+218,Other,Reserved for future use
+219,Other,Reserved for future use
+220,Other,Reserved for future use
+221,Other,Reserved for future use
+222,Other,Reserved for future use
+223,Other,Reserved for future use
+224,Other,Reserved for future use
+225,Other,Reserved for future use
+226,Other,Reserved for future use
+227,Other,Reserved for future use
+228,Other,Reserved for future use
+229,Other,Reserved for future use
+230,Other,Reserved for future use
+231,Other,Reserved for future use
+232,Other,Reserved for future use
+233,Other,Reserved for future use
+234,Other,Reserved for future use
+235,Other,Reserved for future use
+236,Other,Reserved for future use
+237,Other,Reserved for future use
+238,Other,Reserved for future use
+239,Other,Reserved for future use
+240,Other,Reserved for future use
+241,Other,Reserved for future use
+242,Other,Reserved for future use
+243,Other,Reserved for future use
+244,Other,Reserved for future use
+245,Other,Reserved for future use
+246,Other,Reserved for future use
+247,Other,Reserved for future use
+248,Other,Reserved for future use
+249,Other,Reserved for future use
+250,Other,Reserved for future use
+251,Other,Reserved for future use
+252,Other,Reserved for future use
+253,Other,Reserved for future use
+254,Other,Reserved for future use
+255,Other,Reserved for future use
+256,Other,No designation
+257,Other,No designation
+258,Other,No designation
+259,Other,No designation
+260,Other,No designation
+261,Other,No designation
+262,Other,No designation
+263,Other,No designation
+264,Other,No designation
+265,Other,No designation
+266,Other,No designation
+267,Other,No designation
+268,Other,No designation
+269,Other,No designation
+270,Other,No designation
+271,Other,No designation
+272,Other,No designation
+273,Other,No designation
+274,Other,No designation
+275,Other,No designation
+276,Other,No designation
+277,Other,No designation
+278,Other,No designation
+279,Other,No designation
+280,Other,No designation
+281,Other,No designation
+282,Other,No designation
+283,Other,No designation
+284,Other,No designation
+285,Other,No designation
+286,Other,No designation
+287,Other,No designation
+288,Other,No designation
+289,Other,No designation
+290,Other,No designation
+291,Other,No designation
+292,Other,No designation
+293,Other,No designation
+294,Other,No designation
+295,Other,No designation
+296,Other,No designation
+297,Other,No designation
+298,Other,No designation
+299,Other,No designation
+300,Other,No designation
+301,Other,No designation
+302,Other,No designation
+303,Other,No designation
+304,Other,No designation
+305,Other,No designation
+306,Other,No designation
+307,Other,No designation
+308,Other,No designation
+309,Other,No designation
+310,Other,No designation
+311,Other,No designation
+312,Other,No designation
+313,Other,No designation
+314,Other,No designation
+315,Other,No designation
+316,Other,No designation
+317,Other,No designation
+318,Other,No designation
+319,Other,No designation
+320,Other,No designation
+321,Other,No designation
+322,Other,No designation
+323,Other,No designation
+324,Other,No designation
+325,Other,No designation
+326,Other,No designation
+327,Other,No designation
+328,Other,No designation
+329,Other,No designation
+330,Other,No designation
+331,Other,No designation
+332,Other,No designation
+333,Other,No designation
+334,Other,No designation
+335,Other,No designation
+336,Other,No designation
+337,Other,No designation
+338,Other,No designation
+339,Other,No designation
+340,Other,No designation
+341,Other,No designation
+342,Other,No designation
+343,Other,No designation
+344,Other,No designation
+345,Other,No designation
+346,Other,No designation
+347,Other,No designation
+348,Other,No designation
+349,Other,No designation
+350,Other,No designation
+351,Other,No designation
+352,Other,No designation
+353,Other,No designation
+354,Other,No designation
+355,Other,No designation
+356,Other,No designation
+357,Other,No designation
+358,Other,No designation
+359,Other,No designation
+360,Other,No designation
+361,Other,No designation
+362,Other,No designation
+363,Other,No designation
+364,Other,No designation
+365,Other,No designation
+366,Other,No designation
+367,Other,No designation
+368,Other,No designation
+369,Other,No designation
+370,Other,No designation
+371,Other,No designation
+372,Other,No designation
+373,Other,No designation
+374,Other,No designation
+375,Other,No designation
+376,Other,No designation
+377,Other,No designation
+378,Other,No designation
+379,Other,No designation
+380,Other,No designation
+381,Other,No designation
+382,Other,No designation
+383,Other,No designation
+384,Other,No designation
+385,Other,No designation
+386,Other,No designation
+387,Other,No designation
+388,Other,No designation
+389,Other,No designation
+390,Other,No designation
+391,Other,No designation
+392,Other,No designation
+393,Other,No designation
+394,Other,No designation
+395,Other,No designation
+396,Other,No designation
+397,Other,No designation
+398,Other,No designation
+399,Other,No designation
+400,Other,No designation
+401,Other,No designation
+402,Other,No designation
+403,Other,No designation
+404,Other,No designation
+405,Other,No designation
+406,Other,No designation
+407,Other,No designation
+408,Other,No designation
+409,Other,No designation
+410,Other,No designation
+411,Other,No designation
+412,Other,No designation
+413,Other,No designation
+414,Other,No designation
+415,Other,No designation
+416,Other,No designation
+417,Other,No designation
+418,Other,No designation
+419,Other,No designation
+420,Other,No designation
+421,Other,No designation
+422,Other,No designation
+423,Other,No designation
+424,Other,No designation
+425,Other,No designation
+426,Other,No designation
+427,Other,No designation
+428,Other,No designation
+429,Other,No designation
+430,Other,No designation
+431,Other,No designation
+432,Other,No designation
+433,Other,No designation
+434,Other,No designation
+435,Other,No designation
+436,Other,No designation
+437,Other,No designation
+438,Other,No designation
+439,Other,No designation
+440,Other,No designation
+441,Other,No designation
+442,Other,No designation
+443,Other,No designation
+444,Other,No designation
+445,Other,No designation
+446,Other,No designation
+447,Other,No designation
+448,Other,No designation
+449,Other,No designation
+450,Other,No designation
+451,Other,No designation
+452,Other,No designation
+453,Other,No designation
+454,Other,No designation
+455,Other,No designation
+456,Other,No designation
+457,Other,No designation
+458,Other,No designation
+459,Other,No designation
+460,Other,No designation
+461,Other,No designation
+462,Other,No designation
+463,Other,No designation
+464,Other,No designation
+465,Other,No designation
+466,Other,No designation
+467,Other,No designation
+468,Other,No designation
+469,Other,No designation
+470,Other,No designation
+471,Other,No designation
+472,Other,No designation
+473,Other,No designation
+474,Other,No designation
+475,Other,No designation
+476,Other,No designation
+477,Other,No designation
+478,Other,No designation
+479,Other,No designation
+480,Other,No designation
+481,Other,No designation
+482,Other,No designation
+483,Other,No designation
+484,Other,No designation
+485,Other,No designation
+486,Other,No designation
+487,Other,No designation
+488,Other,No designation
+489,Other,No designation
+490,Other,No designation
+491,Other,No designation
+492,Other,No designation
+493,Other,No designation
+494,Other,No designation
+495,Other,No designation
+496,Other,No designation
+497,Other,No designation
+498,Other,No designation
+499,Other,No designation
+500,Other,No designation
+501,Other,No designation
+502,Other,No designation
+503,Other,No designation
+504,Other,No designation
+505,Other,No designation
+506,Other,No designation
+507,Other,No designation
+508,Other,No designation
+509,Other,No designation
+510,Other,No designation
+511,Other,No designation
+512,Other,No designation
+513,Other,No designation
+514,Other,No designation
+515,Other,No designation
+516,Other,No designation
+517,Other,No designation
+518,Other,No designation
+519,Other,No designation
+520,Other,No designation
+521,Other,No designation
+522,Other,No designation
+523,Other,No designation
+524,Other,No designation
+525,Other,No designation
+526,Other,No designation
+527,Other,No designation
+528,Other,No designation
+529,Other,No designation
+530,Other,No designation
+531,Other,No designation
+532,Other,No designation
+533,Other,No designation
+534,Other,No designation
+535,Other,No designation
+536,Other,No designation
+537,Other,No designation
+538,Other,No designation
+539,Other,No designation
+540,Other,No designation
+541,Other,No designation
+542,Other,No designation
+543,Other,No designation
+544,Other,No designation
+545,Other,No designation
+546,Other,No designation
+547,Other,No designation
+548,Other,No designation
+549,Other,No designation
+550,Other,No designation
+551,Other,No designation
+552,Other,No designation
+553,Other,No designation
+554,Other,No designation
+555,Other,No designation
+556,Other,No designation
+557,Other,No designation
+558,Other,No designation
+559,Other,No designation
+560,Other,No designation
+561,Other,No designation
+562,Other,No designation
+563,Other,No designation
+564,Other,No designation
+565,Other,No designation
+566,Other,No designation
+567,Other,No designation
+568,Other,No designation
+569,Other,No designation
+570,Other,No designation
+571,Other,No designation
+572,Other,No designation
+573,Other,No designation
+574,Other,No designation
+575,Other,No designation
+576,Other,No designation
+577,Other,No designation
+578,Other,No designation
+579,Other,No designation
+580,Other,No designation
+581,Other,No designation
+582,Other,No designation
+583,Other,No designation
+584,Other,No designation
+585,Other,No designation
+586,Other,No designation
+587,Other,No designation
+588,Other,No designation
+589,Other,No designation
+590,Other,No designation
+591,Other,No designation
+592,Other,No designation
+593,Other,No designation
+594,Other,No designation
+595,Other,No designation
+596,Other,No designation
+597,Other,No designation
+598,Other,No designation
+599,Other,No designation
+600,Other,No designation
+601,Other,No designation
+602,Other,No designation
+603,Other,No designation
+604,Other,No designation
+605,Other,No designation
+606,Other,No designation
+607,Other,No designation
+608,Other,No designation
+609,Other,No designation
+610,Other,No designation
+611,Other,No designation
+612,Other,No designation
+613,Other,No designation
+614,Other,No designation
+615,Other,No designation
+616,Other,No designation
+617,Other,No designation
+618,Other,No designation
+619,Other,No designation
+620,Other,No designation
+621,Other,No designation
+622,Other,No designation
+623,Other,No designation
+624,Other,No designation
+625,Other,No designation
+626,Other,No designation
+627,Other,No designation
+628,Other,No designation
+629,Other,No designation
+630,Other,No designation
+631,Other,No designation
+632,Other,No designation
+633,Other,No designation
+634,Other,No designation
+635,Other,No designation
+636,Other,No designation
+637,Other,No designation
+638,Other,No designation
+639,Other,No designation
+640,Other,No designation
+641,Other,No designation
+642,Other,No designation
+643,Other,No designation
+644,Other,No designation
+645,Other,No designation
+646,Other,No designation
+647,Other,No designation
+648,Other,No designation
+649,Other,No designation
+650,Other,No designation
+651,Other,No designation
+652,Other,No designation
+653,Other,No designation
+654,Other,No designation
+655,Other,No designation
+656,Other,No designation
+657,Other,No designation
+658,Other,No designation
+659,Other,No designation
+660,Other,No designation
+661,Other,No designation
+662,Other,No designation
+663,Other,No designation
+664,Other,No designation
+665,Other,No designation
+666,Other,No designation
+667,Other,No designation
+668,Other,No designation
+669,Other,No designation
+670,Other,No designation
+671,Other,No designation
+672,Other,No designation
+673,Other,No designation
+674,Other,No designation
+675,Other,No designation
+676,Other,No designation
+677,Other,No designation
+678,Other,No designation
+679,Other,No designation
+680,Other,No designation
+681,Other,No designation
+682,Other,No designation
+683,Other,No designation
+684,Other,No designation
+685,Other,No designation
+686,Other,No designation
+687,Other,No designation
+688,Other,No designation
+689,Other,No designation
+690,Other,No designation
+691,Other,No designation
+692,Other,No designation
+693,Other,No designation
+694,Other,No designation
+695,Other,No designation
+696,Other,No designation
+697,Other,No designation
+698,Other,No designation
+699,Other,No designation
+700,Other,No designation
+701,Other,No designation
+702,Other,No designation
+703,Other,No designation
+704,Other,No designation
+705,Other,No designation
+706,Other,No designation
+707,Other,No designation
+708,Other,No designation
+709,Other,No designation
+710,Other,No designation
+711,Other,No designation
+712,Other,No designation
+713,Other,No designation
+714,Other,No designation
+715,Other,No designation
+716,Other,No designation
+717,Other,No designation
+718,Other,No designation
+719,Other,No designation
+720,Other,No designation
+721,Other,No designation
+722,Other,No designation
+723,Other,No designation
+724,Other,No designation
+725,Other,No designation
+726,Other,No designation
+727,Other,No designation
+728,Other,No designation
+729,Other,No designation
+730,Other,No designation
+731,Other,No designation
+732,Other,No designation
+733,Other,No designation
+734,Other,No designation
+735,Other,No designation
+736,Other,No designation
+737,Other,No designation
+738,Other,No designation
+739,Other,No designation
+740,Other,No designation
+741,Other,No designation
+742,Other,No designation
+743,Other,No designation
+744,Other,No designation
+745,Other,No designation
+746,Other,No designation
+747,Other,No designation
+748,Other,No designation
+749,Other,No designation
+750,Other,No designation
+751,Other,No designation
+752,Other,No designation
+753,Other,No designation
+754,Other,No designation
+755,Other,No designation
+756,Other,No designation
+757,Other,No designation
+758,Other,No designation
+759,Other,No designation
+760,Other,No designation
+761,Other,No designation
+762,Other,No designation
+763,Other,No designation
+764,Other,No designation
+765,Other,No designation
+766,Other,No designation
+767,Other,No designation
+768,Other,No designation
+769,Other,No designation
+770,Other,No designation
+771,Other,No designation
+772,Other,No designation
+773,Other,No designation
+774,Other,No designation
+775,Other,No designation
+776,Other,No designation
+777,Other,No designation
+778,Other,No designation
+779,Other,No designation
+780,Other,No designation
+781,Other,No designation
+782,Other,No designation
+783,Other,No designation
+784,Other,No designation
+785,Other,No designation
+786,Other,No designation
+787,Other,No designation
+788,Other,No designation
+789,Other,No designation
+790,Other,No designation
+791,Other,No designation
+792,Other,No designation
+793,Other,No designation
+794,Other,No designation
+795,Other,No designation
+796,Other,No designation
+797,Other,No designation
+798,Other,No designation
+799,Other,No designation
+800,Other,No designation
+801,Other,No designation
+802,Other,No designation
+803,Other,No designation
+804,Other,No designation
+805,Other,No designation
+806,Other,No designation
+807,Other,No designation
+808,Other,No designation
+809,Other,No designation
+810,Other,No designation
+811,Other,No designation
+812,Other,No designation
+813,Other,No designation
+814,Other,No designation
+815,Other,No designation
+816,Other,No designation
+817,Other,No designation
+818,Other,No designation
+819,Other,No designation
+820,Other,No designation
+821,Other,No designation
+822,Other,No designation
+823,Other,No designation
+824,Other,No designation
+825,Other,No designation
+826,Other,No designation
+827,Other,No designation
+828,Other,No designation
+829,Other,No designation
+830,Other,No designation
+831,Other,No designation
+832,Other,No designation
+833,Other,No designation
+834,Other,No designation
+835,Other,No designation
+836,Other,No designation
+837,Other,No designation
+838,Other,No designation
+839,Other,No designation
+840,Other,No designation
+841,Other,No designation
+842,Other,No designation
+843,Other,No designation
+844,Other,No designation
+845,Other,No designation
+846,Other,No designation
+847,Other,No designation
+848,Other,No designation
+849,Other,No designation
+850,Other,No designation
+851,Other,No designation
+852,Other,No designation
+853,Other,No designation
+854,Other,No designation
+855,Other,No designation
+856,Other,No designation
+857,Other,No designation
+858,Other,No designation
+859,Other,No designation
+860,Other,No designation
+861,Other,No designation
+862,Other,No designation
+863,Other,No designation
+864,Other,No designation
+865,Other,No designation
+866,Other,No designation
+867,Other,No designation
+868,Other,No designation
+869,Other,No designation
+870,Other,No designation
+871,Other,No designation
+872,Other,No designation
+873,Other,No designation
+874,Other,No designation
+875,Other,No designation
+876,Other,No designation
+877,Other,No designation
+878,Other,No designation
+879,Other,No designation
+880,Other,No designation
+881,Other,No designation
+882,Other,No designation
+883,Other,No designation
+884,Other,No designation
+885,Other,No designation
+886,Other,No designation
+887,Other,No designation
+888,Other,No designation
+889,Other,No designation
+890,Other,No designation
+891,Other,No designation
+892,Other,No designation
+893,Other,No designation
+894,Other,No designation
+895,Other,No designation
+896,Other,No designation
+897,Other,No designation
+898,Other,No designation
+899,Other,No designation
+900,Other,No designation
+901,Other,No designation
+902,Other,No designation
+903,Other,No designation
+904,Other,No designation
+905,Other,No designation
+906,Other,No designation
+907,Other,No designation
+908,Other,No designation
+909,Other,No designation
+910,Other,No designation
+911,Other,No designation
+912,Other,No designation
+913,Other,No designation
+914,Other,No designation
+915,Other,No designation
+916,Other,No designation
+917,Other,No designation
+918,Other,No designation
+919,Other,No designation
+920,Other,No designation
+921,Other,No designation
+922,Other,No designation
+923,Other,No designation
+924,Other,No designation
+925,Other,No designation
+926,Other,No designation
+927,Other,No designation
+928,Other,No designation
+929,Other,No designation
+930,Other,No designation
+931,Other,No designation
+932,Other,No designation
+933,Other,No designation
+934,Other,No designation
+935,Other,No designation
+936,Other,No designation
+937,Other,No designation
+938,Other,No designation
+939,Other,No designation
+940,Other,No designation
+941,Other,No designation
+942,Other,No designation
+943,Other,No designation
+944,Other,No designation
+945,Other,No designation
+946,Other,No designation
+947,Other,No designation
+948,Other,No designation
+949,Other,No designation
+950,Other,No designation
+951,Other,No designation
+952,Other,No designation
+953,Other,No designation
+954,Other,No designation
+955,Other,No designation
+956,Other,No designation
+957,Other,No designation
+958,Other,No designation
+959,Other,No designation
+960,Other,No designation
+961,Other,No designation
+962,Other,No designation
+963,Other,No designation
+964,Other,No designation
+965,Other,No designation
+966,Other,No designation
+967,Other,No designation
+968,Other,No designation
+969,Other,No designation
+970,Other,No designation
+971,Other,No designation
+972,Other,No designation
+973,Other,No designation
+974,Other,No designation
+975,Other,No designation
+976,Other,No designation
+977,Other,No designation
+978,Other,No designation
+979,Other,No designation
+980,Other,No designation
+981,Other,No designation
+982,Other,No designation
+983,Other,No designation
+984,Other,No designation
+985,Other,No designation
+986,Other,No designation
+987,Other,No designation
+988,Other,No designation
+989,Other,No designation
+990,Other,No designation
+991,Other,No designation
+992,Other,No designation
+993,Other,No designation
+994,Other,No designation
+995,Other,No designation
+996,Other,No designation
+997,Other,No designation
+998,Other,No designation
+999,Other,No designation
+1000,Other,No designation
+1001,Fishing,Commercial Fishing Vessel
+1002,Fishing,Fish Processing Vessel
+1003,Cargo,Freight Barge
+1004,Cargo,Freight Ship
+1005,Other,Industrial Vessel
+1006,Other,Miscellaneous Vessel
+1007,Other,Mobile Offshore Drilling Unit
+1008,Other,Non-vessel
+1009,Other,NON-VESSEL
+1010,Other,Offshore Supply Vessel
+1011,Other,Oil Recovery
+1012,Passenger,Passenger (Inspected)
+1013,Passenger,Passenger (Uninspected)
+1014,Passenger,Passenger Barge (Inspected)
+1015,Passenger,Passenger Barge (Uninspected)
+1016,Cargo,Public Freight
+1017,Tanker,Public Tankship/Barge
+1018,Other,Public Vessel Unclassified
+1019,Pleasure Craft/Sailing,Recreational
+1020,Other,Research Vessel
+1021,Military,SAR Aircraft
+1022,Other,School Ship
+1023,Tug Tow,Tank Barge
+1024,Tanker,Tank Ship
+1025,Tug Tow,Towing Vessel

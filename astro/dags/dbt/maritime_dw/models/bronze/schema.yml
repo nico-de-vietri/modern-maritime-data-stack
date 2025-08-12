@@ -1,0 +1,66 @@
+version: 2
+
+models:
+  - name: bronze_clean
+    description: "Raw data cleaned from Airbyte bronze layer with JSON unnesting and deduplication logic"
+    columns:
+      - name: user_id
+        description: "Primary vessel or ship identifier"
+        tests:
+          - not_null
+
+      - name: _airbyte_extracted_at
+        description: "Timestamp of when the record was extracted by Airbyte"
+        tests:
+          - not_null
+
+      - name: unique_row_id
+        description: "UserID combined with extracted timestamp to create a unique key"
+        tests:
+          - not_null
+          - unique
+
+      - name: latitude
+        description: "Geographic latitude of vessel"
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: -90
+              max_value: 90
+
+      - name: longitude
+        description: "Geographic longitude of vessel"
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: -180
+              max_value: 180
+
+      - name: estimated_time_arrival
+        description: "ETA parsed from JSON field"
+        tests:
+          - not_null
+
+      - name: speed_over_ground
+        description: "Vessel speed"
+        tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+              max_value: 100  # adjust based on known max speed if needed
+
+      - name: name
+        description: "Name of the vessel"
+        tests:
+          - not_null
+    
+      - name: destination
+        description: "Reported destination of the vessel"
+        tests:
+          - not_null
+
+      - name: navigational_status
+        description: "Vessel’s current navigational state"
+        tests:
+          - dbt_expectations.expect_column_values_to_be_in_set:
+              value_set: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15] # Adjust depending on AIS format
+      

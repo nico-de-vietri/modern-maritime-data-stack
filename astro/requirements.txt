@@ -7,8 +7,9 @@ websockets
 minio
 apache-airflow-providers-airbyte
 dbt-core
-dbt-postgres
+#dbt-postgres
 pandas
 sqlalchemy
 psycopg2-binary
-great_expectations
+astronomer-cosmos
+dbt-postgres

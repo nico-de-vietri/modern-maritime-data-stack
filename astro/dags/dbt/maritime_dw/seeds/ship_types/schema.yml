@@ -1,0 +1,15 @@
+version: 2
+
+seeds:
+  - name: ship_types
+    description: "ship types"
+    columns:
+      - name: vessel_type
+        description: "numeric code"
+        tests:
+          - not_null
+      - name: vessel_group
+        description: "Ship category (eg. Cargo, Tanker)"
+      - name: ais_ship_cargo_classification
+        description: "Details"
+

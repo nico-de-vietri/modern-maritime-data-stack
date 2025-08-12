@@ -1,0 +1,14 @@
+
+version: 2
+
+seeds:
+  - name: mid_country
+    description: "Map MID to country for vessel flag inference"
+    columns:
+      - name: mid
+        description: "Maritime Identification Digits (first 3 of MMSI)"
+        tests:
+          - not_null
+          - unique
+      - name: country
+        description: "Flag country name"
