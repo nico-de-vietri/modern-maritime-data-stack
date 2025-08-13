@@ -16,7 +16,8 @@ RUN python3 -m venv /usr/local/airflow/dbt_venv && \
     /usr/local/airflow/dbt_venv/bin/pip install --no-cache-dir dbt-postgres astronomer-cosmos && \
     ln -sf /usr/local/airflow/dbt_venv/bin/dbt /usr/local/bin/dbt
 
-
+USER root
+RUN apt-get update && apt-get install -y git
 USER astro
 
 

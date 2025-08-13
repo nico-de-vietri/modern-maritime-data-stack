@@ -6,7 +6,8 @@ from pendulum import datetime
 from datetime import timedelta
 from include.main_api_to_minio_snapshot_and_events import run_ingestion
 from dotenv import load_dotenv
-
+from cosmos import DbtDag, ProjectConfig, ProfileConfig, RenderConfig, ExecutionConfig
+from cosmos.profiles import PostgresUserPasswordProfileMapping
 
 # load env vars from .env, please check .env and adjust if necessary
 load_dotenv()

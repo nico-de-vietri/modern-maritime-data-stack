@@ -3,10 +3,10 @@ maritime_dw:
   outputs:
     dev:
       type: postgres
-      host: postgres-destination
-      user: postgres
-      password: posgresadmin
-      port: 5432
+      host: "{{ env_var('POSTGRES_DESTINATION_HOST') }}"
+      user: "{{ env_var('POSTGRES_DESTINATION_USER') }}"
+      password: "{{ env_var('POSTGRES_DESTINATION_PASSWORD') }}"
+      port: "{{ env_var('POSTGRES_DESTINATION_PORT') | int }}"
       dbname: postgres
       schema: public
       threads: 1
