@@ -23,13 +23,13 @@ assert (
 
 
 @dag(
-    dag_id="maritime_pipeline_v3",
+    dag_id="maritime_pipeline_dbt",
     schedule_interval=timedelta(minutes=30),
-    start_date=datetime(2025, 1, 8, tz="UTC"),
+    start_date=datetime(2025, 8, 1, tz="UTC"),
     catchup=False,
-    tags=["maritime", "airbyte", "minio"],
+    tags=["maritime", "airbyte", "minio", "dbt"],
 )
-def pipeline_v3():
+def pipeline_dbt():
 
     @task
     def api_to_minio():
@@ -86,9 +86,37 @@ def pipeline_v3():
         response.raise_for_status()
         print("Sync triggered with response:", response.text)
 
+    # dbt tasks
+    @task
+    def bronze():
+        os.system("dbt run --select bronze_clean")
+
+    @task
+    def bronze_test():
+        os.system("dbt test --select bronze_clean")
+
+    @task
+    def seed():
+        os.system("dbt seed")
+
+    @task
+    def silver():
+        os.system("dbt run --select silver")
+
+    @task
+    def silver_test():
+        os.system("dbt test --select silver")
+
     # pipeline flow
     token = fetch_token()
-    api_to_minio() >> trigger_sync(token)
+    (
+        api_to_minio()
+        >> trigger_sync(token)
+        >> bronze()
+        >> [bronze_test(), seed()]
+        >> silver()
+        >> silver_test()
+    )
 
 
-pipeline_v3()
+pipeline_dbt()

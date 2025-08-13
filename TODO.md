@@ -1,3 +1,6 @@
+check dbt_project.yml inside astro container, there is a problem with the materialized, parsing something weird
+get sudo password for astro
+
 https://github.com/tayljordan/ports/blob/main/ports.json
 
 ✅ What Can We Do With This Data?

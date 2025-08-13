@@ -1,20 +1,42 @@
 version: '3.1'
 services:
-  postgres_data:
-    image: postgres:15.4-alpine
-    volumes:
-      - ${PWD}/include/postgres:/var/lib/postgresql/data
+  scheduler:
     networks:
-      airbyte-net:
-        aliases:
-          - postgres-destination
-    ports:
-      - 5433:5432
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=posgresadmin
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+      - default
+      - airbyte-net
+  webserver:
+    networks:
+      - default
+      - airbyte-net
+  triggerer:
+    networks:
+      - default
+      - airbyte-net
+
+networks:
+  airbyte-net:
+    external: true
+
+
+
+
+# version: '3.1'
+# services:
+#   postgres_data:
+#     image: postgres:15.4-alpine
+#     volumes:
+#       - ${PWD}/include/postgres:/var/lib/postgresql/data
+#     networks:
+#       airbyte-net:
+#         aliases:
+#           - postgres-destination
+#     ports:
+#       - 5433:5432
+#     environment:
+#       - POSTGRES_USER=postgres
+#       - POSTGRES_PASSWORD=posgresadmin
+#     extra_hosts:
+#       - "host.docker.internal:host-gateway"
 
 
 
