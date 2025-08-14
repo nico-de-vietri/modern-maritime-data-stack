@@ -1,0 +1,89 @@
+version: 2
+
+models:
+  - name: gold
+    description: >
+      Cleaned and enriched ship movement data, derived from the silver layer.
+      Includes vessel position, destination, ETA, vessel metadata, and derived metrics like distance_km.
+    columns:
+      - name: unique_row_id
+        description: Unique identifier for the row (composite key of user_id + timestamp)
+        tests:
+          - unique
+          - not_null
+
+      - name: user_id
+        description: Unique vessel ID (MMSI or internal ID)
+        tests:
+          - not_null
+
+      - name: name
+        description: Vessel name
+
+      - name: imo_number
+        description: IMO number (if available)
+
+      - name: latitude
+        description: Current latitude of the vessel
+
+      - name: longitude
+        description: Current longitude of the vessel
+
+      - name: speed_over_ground
+        description: Vessel speed over ground in knots
+
+      - name: navigation_status
+        description: Navigational status (e.g., underway, moored, etc.)
+
+      - name: dimension_length
+        description: Vessel length (meters)
+
+      - name: dimension_width
+        description: Vessel width (meters)
+
+      - name: mid
+        description: Maritime ID or regional ship ID
+
+      - name: eta_timestamp
+        description: Full ETA timestamp (with hour/minute)
+
+      - name: eta_date
+        description: ETA date (cast from timestamp, used for visual grouping)
+
+      - name: type
+        description: Ship type classification (e.g., cargo, tanker, etc.)
+
+      - name: _airbyte_extracted_at
+        description: Ingestion timestamp from Airbyte
+
+      - name: vessel_description
+        description: Free-form description of vessel
+
+      - name: flag_country
+        description: Country under which vessel is flagged
+
+      - name: destination_clean
+        description: Cleaned text field for destination
+
+      - name: destination_country
+        description: Mapped country name for destination
+
+      - name: country_name
+        description: Country name associated with vessel
+
+      - name: matched_port
+        description: Best-guess matched port from destination string
+
+      - name: latitude_destination
+        description: Latitude of destination (if inferred)
+
+      - name: longitude_destination
+        description: Longitude of destination (if inferred)
+
+      - name: distance_km
+        description: Estimated distance between current location and destination (Haversine, in km)
+
+    meta:
+      owner: your_team_name_or_data_owner
+      maturity: gold
+      dbt_model_type: table
