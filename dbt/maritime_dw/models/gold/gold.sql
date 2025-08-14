@@ -1,6 +1,16 @@
-
+{{ config(materialized='table') }}
 
 with gold as (
+    select distinct *
+    from (
+        select *,
+            row_number() over (partition by unique_row_id order by _airbyte_extracted_at desc) as rn
+        from {{ ref('silver') }}
+        where eta_timestamp is not null
+    ) t
+    where rn = 1
+)
+
 
     select 
         unique_row_id,
@@ -41,8 +51,5 @@ with gold as (
             else null
         end as distance_km
 
-    from {{ ref('silver') }}
-    where eta_timestamp is not null
-)
-
-select * from gold
+    from gold
+  

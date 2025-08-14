@@ -21,6 +21,7 @@ with bronze as (
         
 
         -- ETA components
+        eta,
         nullif((eta->>'Month')::int, 0) as eta_month,
         nullif((eta->>'Day')::int, 0) as eta_day,
         nullif((eta->>'Hour')::int, 25) as eta_hour,   -- treat invalid hours as NULL
@@ -121,7 +122,7 @@ ports as (
 silver as (
     select
         e.*,
-        nv1.navigation_status,
+        nv1.description as navigation_status,
         coalesce(
             p1.country_code, 
             p2.country_code
@@ -150,4 +151,8 @@ silver as (
         on e.navigational_status=nv1.navigation_status
 )
 
-select * from silver
+select * 
+from silver
+{% if is_incremental() %}
+where _airbyte_extracted_at > (select coalesce(max(_airbyte_extracted_at), '1900-01-01'::timestamp) FROM {{ this }})
+{% endif %}

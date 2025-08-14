@@ -3,8 +3,10 @@ version: 2
 models:
   - name: gold
     description: >
-      Cleaned and enriched ship movement data, derived from the silver layer.
-      Includes vessel position, destination, ETA, vessel metadata, and derived metrics like distance_km.
+      Cleaned, deduplicated (capturing the latest record per unique_row_id based on _airbyte_extracted_at) 
+      and enriched ship data, derived from the silver layer.
+      Includes vessel position, destination, ETA, vessel metadata, and derived metrics like distance_km 
+      (calculated fields like the Haversine distance between current and destination coordinates). 
     columns:
       - name: unique_row_id
         description: Unique identifier for the row (composite key of user_id + timestamp)
