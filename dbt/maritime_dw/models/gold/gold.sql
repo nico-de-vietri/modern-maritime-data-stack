@@ -19,21 +19,23 @@ with gold as (
         imo_number,
         cast(latitude as float) as latitude,
         cast(longitude as float) as longitude,
-        cast(speed_over_ground as float) as speed_over_ground,
+        cast(speed_over_ground as float) as speed_over_ground_knots,
+        cast(speed_over_ground as float) * 1.852 as speed_over_ground_kmh,
+        cast(course_over_ground as float) as course_over_ground_degrees,
         navigation_status,
-        dimension_length,
-        dimension_width,
-        mid,
-        eta_timestamp,
+        dimension_length as dimension_length_meters,
+        dimension_width as dimension_width_meters,
+        --mid,
+        --eta_timestamp,
         cast(eta_timestamp as date) as eta_date, -- date only for grouping
         type,
         _airbyte_extracted_at,
-        vessel_description,
-        flag_country,
-        destination_clean,
-        destination_country,
-        country_name,
-        matched_port,
+        upper(vessel_description),
+        flag_country as vessel_flag_country,
+        --destination_clean,
+        destination_country as destination_country_code,
+        country_name as destination_country,
+        matched_port as port_name,
         latitude_destination,
         longitude_destination,
 
@@ -49,7 +51,7 @@ with gold as (
                     + sin(radians(latitude)) * sin(radians(latitude_destination))
                 )
             else null
-        end as distance_km
+        end as distance_to_destination_kilometers
 
     from gold
   

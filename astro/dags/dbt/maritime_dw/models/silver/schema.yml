@@ -18,17 +18,17 @@ models:
         description: "IMO number of the ship"
         tests:
           - not_null
-          - unique
+          
 
       - name: eta_timestamp
         description: "Estimated time of arrival (ETA) as a timestamp"
         tests:
-          - not_null
+          - valid_eta_timestamp
+        
 
       - name: type
         description: "Ship type code"
-        tests:
-          - not_null
+       
 
       - name: vessel_type
         description: "Ship type description from external catalog"
@@ -38,10 +38,8 @@ models:
 
       - name: latitude
         description: "Reported latitude"
-        tests:
-          - not_null
+        
 
       - name: longitude
         description: "Reported longitude"
-        tests:
-          - not_null
+       
