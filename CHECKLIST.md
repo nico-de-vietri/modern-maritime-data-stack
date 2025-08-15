@@ -1,5 +1,7 @@
-# check new Ips
-docker network inspect airbyte-net
+# docker
+docker ps
+docker ps -a
+docker network inspect airbyte-net (network-name)
 
 # logins
 -pgadmin:http://localhost:9081/browser/
@@ -7,6 +9,11 @@ docker network inspect airbyte-net
 -airflow:http://localhost:8080
 -minio:http://localhost:9001
 -dbt:
+
+# astro
+astro dev run dags reserialize 
+astro dev bash
+
 
 # check .env and update new ips everywhere
 .env
@@ -19,7 +26,7 @@ astro dev restart
 docker network connect airbyte-net astro_ad7a2b-webserver-1
 docker network connect airbyte-net astro_ad7a2b-triggerer-1
 docker network connect airbyte-net astro_ad7a2b-scheduler-1
-docker network connect airbyte-net astro_ad7a2b-postgres-1
+-------docker network connect airbyte-net astro_ad7a2b-postgres-1----- metadata db no need
 
 # DW container minio-postgres-dbt
 docker compose up -d

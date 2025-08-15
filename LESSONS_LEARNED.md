@@ -3,9 +3,38 @@
 ## Project Setup and Architecture
 
 - Decidí separar Airbyte, Airflow (Astro CLI) y los servicios de infraestructura (MinIO, Postgres, dbt) en bloques separados para mantener cada componente independiente y facilitar debugging.
-- Montar volúmenes en Docker Compose para los proyectos de dbt facilita el desarrollo local y evitar rebuilds constantes.
+- Montar volumenes en Docker Compose para los proyectos de dbt facilita el desarrollo local y evitar rebuilds constantes.
 - Usar `docker exec` para entrar en contenedores individuales y probar comandos agiliza el desarrollo.
 - Variables sensibles se manejan mejor con archivos `.env` para no hardcodearlas en configuraciones ni código.
+
+## Airbyte
+Initially tried using the AirbyteTriggerSyncOperator from the Airflow Airbyte provider, but I was running Airbyte locally via abctl with a Kubernetes backend (provider kind), and it wasn't compatible out-of-the-box with the provider's expectations (like using basic auth or no auth). I also had to implement token-based authentication using the OAuth2 client credentials flow, which isn't supported by the standard operator. Because of this, I implemented a custom sync trigger function that handles both the token refresh and sync logic, and that ended up being more flexible and reliable in my setup.
+
+AirbyteTriggerSyncOperator assumes that:
+
+-Airbyte is accessible via a REST API
+
+-No token-based auth is needed
+
+-The connection is already configured and working
+
+Using Airbyte’s default Docker-based deployment or Cloud
+
+In this case running Airbyte via abctl + Kubernetes + kind provider (non-default setup)
+
+- Airbyte API is protected by an OAuth2 token (non-standard for Airbyte deployments)
+
+- The operator does not support fetching or injecting tokens
+
+- Must handle token expiration/refresh and status polling manually
+
+- Fine-grained control to debug and understand what's going on
+
+- Basics to configure network and periodically check and update dynamic IPs of each service in the config
+
+- If a sync is still running and there is another dag run, the sync task in Airflow will fail.
+
+- With this kind of customs DIY solutions, Aibyte connection (or whichever service) could fail and still the dag runs successfully if you are not checking Airbyte job's status.
 
 ## Airflow & Astro CLI
 

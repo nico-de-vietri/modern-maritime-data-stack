@@ -1,13 +1,15 @@
 import os
 import time
 import requests
-from airflow.decorators import dag, task
+from airflow.decorators import dag, task, task_group
 from pendulum import datetime
 from datetime import timedelta
 from include.main_api_to_minio_snapshot_and_events import run_ingestion
 from dotenv import load_dotenv
 from cosmos import DbtDag, ProjectConfig, ProfileConfig, RenderConfig, ExecutionConfig
 from cosmos.profiles import PostgresUserPasswordProfileMapping
+from include.airbyte_utils import trigger_airbyte_sync
+from airflow.utils.task_group import TaskGroup
 
 # load env vars from .env, please check .env and adjust if necessary
 load_dotenv()
@@ -23,7 +25,7 @@ assert (
 
 
 @dag(
-    dag_id="maritime_pipeline_dbt",
+    dag_id="maritime_pipeline_dbt_3",
     schedule_interval=timedelta(minutes=3),
     start_date=datetime(2025, 8, 1, tz="UTC"),
     catchup=False,
@@ -51,40 +53,13 @@ def pipeline_dbt():
 
     @task
     def trigger_sync(token: str):
-
-        MAX_WAIT_SECONDS = 600
-        CHECK_INTERVAL = 30
-        waited = 0
-
-        status_url = f"{AIRBYTE_API_URL}/connections/get"
-        sync_url = f"{AIRBYTE_API_URL}/connections/sync"
-        headers = {"Authorization": token, "Content-Type": "application/json"}
-        payload = {"connectionId": CONNECTION_ID}
-
-        # checks if airbyte sync is runnig , if running wait MAX_WAIT_SECONDS
-        # recheck every CHECK_INTERVAL if its free
-        while True:
-            status_resp = requests.post(status_url, headers=headers, json=payload)
-            status_resp.raise_for_status()
-
-            job_status = status_resp.json().get("latestSyncJobStatus", "").lower()
-            print(f"Airbyte sync status: {job_status}")
-
-            if job_status not in ("running", "pending"):
-                break
-
-            if waited >= MAX_WAIT_SECONDS:
-                raise TimeoutError(
-                    f"Airbyte sync is still running after {MAX_WAIT_SECONDS/60} minutes."
-                )
-
-            print(f"Sync running. Waiting {CHECK_INTERVAL} seconds...")
-            time.sleep(CHECK_INTERVAL)
-            waited += CHECK_INTERVAL
-
-        response = requests.post(sync_url, headers=headers, json=payload)
-        response.raise_for_status()
-        print("Sync triggered with response:", response.text)
+        trigger_airbyte_sync(
+            airbyte_api_url=AIRBYTE_API_URL,
+            connection_id=CONNECTION_ID,
+            token=token,
+            max_wait_seconds=120,
+            check_interval=30,
+        )
 
     # dbt tasks
     @task
@@ -116,17 +91,38 @@ def pipeline_dbt():
         os.system("dbt test --select gold")
 
     # pipeline flow
-    token = fetch_token()
-    (
-        api_to_minio()
-        >> trigger_sync(token)
-        >> bronze()
-        >> [bronze_test(), seed()]
-        >> silver()
-        >> silver_test()
-        >> gold()
-        >> gold_test()
-    )
+    # Extract
+    with TaskGroup("extract", tooltip="Extract from API to Minio") as extract:
+        api_to_minio_task = api_to_minio()
+        token_task = fetch_token()
+
+    # Load
+    with TaskGroup("load", tooltip="Load data via Airbyte") as load:
+        trigger_sync_task = trigger_sync(token_task)
+
+    # Transform
+    with TaskGroup("transform", tooltip="Transform data with DBT") as transform:
+        bronze_task = bronze()
+        bronze_test_task = bronze_test()
+        seed_task = seed()
+        silver_task = silver()
+        silver_test_task = silver_test()
+        gold_task = gold()
+        gold_test_task = gold_test()
+
+        (
+            bronze_task
+            >> [bronze_test_task, seed_task]
+            >> silver_task
+            >> silver_test_task
+            >> gold_task
+            >> gold_test_task
+        )
+
+    # Dependencies
+    api_to_minio_task >> load
+    token_task >> load
+    load >> transform
 
 
 pipeline_dbt()

@@ -13,10 +13,13 @@ load_dotenv(os.path.join(os.path.dirname(os.path.dirname(__file__)), ".env"))
 
 BUCKET_SNAPSHOT_NAME = os.getenv("MINIO_BUCKET")
 BUCKET_EVENTS_NAME = os.getenv("MINIO_BUCKET_EVENTS")
+LISTEN_SECONDS = int(os.getenv("LISTEN_SECONDS", 30))  # fallback to 30 sec if not set
+BATCH_SIZE = int(os.getenv("BATCH_SIZE", 100))
+MAX_WAIT = int(os.getenv("MAX_WAIT", 10))
 
 
 class BatchUploader:
-    def __init__(self, minio_client, bucket, batch_size=100, max_wait=10):
+    def __init__(self, minio_client, bucket, batch_size=BATCH_SIZE, max_wait=MAX_WAIT):
         self.minio_client = minio_client
         self.bucket = bucket
         self.batch_size = batch_size
@@ -72,7 +75,7 @@ def run_ingestion():
     # Creates a processing at runtime function
     process_and_upload = asyncio.run(process_and_upload_factory())
     # Exec listen_and_process , listen seconds can vary
-    asyncio.run(listen_and_process(process_and_upload, listen_seconds=300))
+    asyncio.run(listen_and_process(process_and_upload, listen_seconds=LISTEN_SECONDS))
 
 
 if __name__ == "__main__":
