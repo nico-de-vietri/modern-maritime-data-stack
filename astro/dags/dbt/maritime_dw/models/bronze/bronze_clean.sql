@@ -29,8 +29,10 @@ WITH raw_data AS (
         "FixType"::bigint AS fix_type,
         "Latitude"::numeric AS latitude,
         "ClassBDsc"::boolean AS class_bdsc,
-        ("Dimension" ->> 'length')::numeric AS dimension_length,
-        ("Dimension" ->> 'width')::numeric AS dimension_width,
+        -- This reflects the full ship length and width, derived from parts
+        coalesce(("Dimension" ->> 'A')::numeric, 0) + coalesce(("Dimension" ->> 'B')::numeric, 0) AS dimension_length,
+        coalesce(("Dimension" ->> 'C')::numeric, 0) + coalesce(("Dimension" ->> 'D')::numeric, 0) AS dimension_width,
+
 
         "ImoNumber"::bigint AS imo_number,
         "Longitude"::numeric AS longitude,

@@ -13,6 +13,7 @@ with bronze as (
         latitude::float,
         longitude::float,
         speed_over_ground,
+        course_over_ground,
         navigational_status::int,
         destination,
         dimension_length::int,
@@ -27,7 +28,7 @@ with bronze as (
         nullif((eta->>'Hour')::int, 25) as eta_hour,   -- treat invalid hours as NULL
         nullif((eta->>'Minute')::int, 60) as eta_minute,  -- treat invalid minutes as NULL
 
-        -- ETA parsed timestamp with leap year check for Feb 29
+       /* -- ETA parsed timestamp with leap year check for Feb 29
         case 
             when nullif((eta->>'Month')::int, 0) = 2
              and nullif((eta->>'Day')::int, 0) = 29
@@ -50,7 +51,9 @@ with bronze as (
                     0
                 )
             else null
-        end as eta_timestamp,
+        end as eta_timestamp,*/
+        {{ safe_eta_timestamp('eta') }} as eta_timestamp,
+
 
         type::int,
 
