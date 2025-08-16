@@ -8,7 +8,6 @@ seeds:
         description: "2 digit international country code"
         tests:
           - not_null
-          - unique
       - name: location
         description: "Port code"
         tests:

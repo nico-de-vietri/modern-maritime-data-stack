@@ -1,3 +1,7 @@
+# superset
+SQLAlchemy URI
+postgresql+psycopg2://postgres:posgresadmin@postgres-destination:5432/postgres
+
 # docker
 docker ps
 docker ps -a

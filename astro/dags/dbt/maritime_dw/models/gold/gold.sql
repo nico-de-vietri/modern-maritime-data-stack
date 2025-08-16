@@ -4,7 +4,7 @@ with gold as (
     select distinct *
     from (
         select *,
-            row_number() over (partition by unique_row_id order by _airbyte_extracted_at desc) as rn
+            row_number() over (partition by user_id order by _airbyte_extracted_at desc) as rn
         from {{ ref('silver') }}
         where eta_timestamp is not null
     ) t

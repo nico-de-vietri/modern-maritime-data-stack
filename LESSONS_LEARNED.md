@@ -62,4 +62,69 @@ In this case running Airbyte via abctl + Kubernetes + kind provider (non-default
 
 ---
 
+
+Lessons Learned: Full Stack Data Pipeline Setup
+1. dbt + Airflow (Astro) Integration
+
+Profiles placement matters:
+profiles.yml must be in a directory referenced by DBT_PROFILES_DIR (e.g. /usr/local/airflow/dags/dbt/maritime_dw) for dbt commands to run properly inside containers.
+
+Correct .env usage:
+.env must define all required env vars. Airflow reads from this during container startup, so changes may require astro dev restart.
+
+Volume mounts in containers:
+When running astro dev, your local files (like dbt models and profiles.yml) get mounted into the container. Keep your dbt project self-contained inside astro/dags/dbt/... to avoid confusion.
+
+2. Working with Docker Containers
+
+Permissions matter:
+dbt failed initially due to permission issues writing to logs/dbt.log.
+🔧 Solution: Run chmod -R 777 dbt in the container (or set correct ownership).
+
+Environment consistency:
+You used docker exec -it to troubleshoot inside the container. Always test dbt builds from within the same environment Airflow runs them (i.e. the scheduler container).
+
+3. Dynamic IPs and Hostnames
+
+Use container names over IPs:
+Replace hardcoded IPs (like 192.168.x.x) with Docker service names, e.g.:
+
+MINIO_ENDPOINT=minio:9000
+POSTGRES_DESTINATION_HOST=postgres-destination
+
+
+This avoids issues when IPs change between reboots or networks.
+
+4. Airbyte and dbt Automation in DAGs
+
+Airbyte OAuth token required:
+You built a helper to retrieve the token from Airbyte before triggering syncs. This makes your DAG more robust.
+
+dbt via subprocess.run() works but...
+You're currently calling dbt build using Python's subprocess. While functional, this can be improved with Cosmos' DbtTaskGroup for better task separation and observability.
+
+5. Debugging Best Practices
+
+Use dbt debug inside the container to test connectivity and validate config.
+
+Test dbt list to ensure your models and project load correctly.
+
+Read Airflow logs carefully, especially for stderr and paths (like missing dbt_project.yml).
+
+Validate ETL success via queries like:
+
+SELECT MAX(_airbyte_extracted_at) FROM public.gold;
+
+6. Versioning & Git Workflow
+
+Commit all relevant dbt project files, including:
+
+dbt_project.yml
+
+profiles.yml (unless excluded)
+
+models/, seeds/, snapshots/, macros/
+
+Clean up .gitignore to avoid accidentally excluding important pieces.
+
 ¡Estos apuntes ayudarán a que el proyecto sea más mantenible y escalable a futuro!
