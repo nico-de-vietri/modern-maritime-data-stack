@@ -35,4 +35,3 @@ models:
     #example:
       #+materialized: view
     materialized: view
-    

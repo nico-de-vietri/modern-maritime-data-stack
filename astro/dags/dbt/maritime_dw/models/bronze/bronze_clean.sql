@@ -82,7 +82,7 @@ FROM deduped
 WHERE row_num = 1
 
 {% if is_incremental() %}
-  AND _airbyte_extracted_at >= (SELECT MAX(_airbyte_extracted_at) FROM {{ this }})
+  AND _airbyte_extracted_at > (SELECT MAX(_airbyte_extracted_at) FROM {{ this }})
 {% endif %}
 
 
