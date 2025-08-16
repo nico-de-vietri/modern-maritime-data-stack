@@ -20,6 +20,7 @@ AIRBYTE_API_URL = os.getenv("AIRBYTE_API_URL")
 CLIENT_ID = os.getenv("CLIENT_ID")
 CLIENT_SECRET = os.getenv("CLIENT_SECRET")
 CONNECTION_ID = os.getenv("AIRBYTE_CONNECTION_ID")
+CWD_DBT = os.getenv("DBT_PROJECT_DIR", "/usr/local/airflow/dags/dbt/maritime_dw")
 
 assert (
     AIRBYTE_API_URL and CLIENT_ID and CLIENT_SECRET and CONNECTION_ID
@@ -78,6 +79,7 @@ def pipeline_dbt():
                 # Run dbt build for the given model
                 subprocess.run(
                     ["dbt", "build", "--select", model],
+                    cwd=CWD_DBT,
                     check=True,
                     capture_output=True,
                     text=True,
