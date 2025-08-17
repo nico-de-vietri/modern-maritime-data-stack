@@ -1,4 +1,10 @@
-Data Engineering Project with Airflow, Airbyte, MinIO, Postgres, and dbt
+Data Engineering Project ELT with Airflow, Airbyte, MinIO, Postgres, and dbt
+Dockerfiles were customized accordingly to run and install dependencies
+docker-compose.yaml ouside astro handles images from minio, postgres-destination(the data warehouse), dbt for local development and testing and superset
+.env outside astro is being used for docker-compose.yaml
+it is a bit untidy yet
+
+
 EXTRACT – from API to Object Storage
 
 This pipeline connects to a real-time AIS (Automatic Identification System) data stream via WebSocket, processes messages per ship, and stores them in MinIO.
