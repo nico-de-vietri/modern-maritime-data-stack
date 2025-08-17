@@ -2,10 +2,10 @@
 
 ## Project Setup and Architecture
 
-- Decidí separar Airbyte, Airflow (Astro CLI) y los servicios de infraestructura (MinIO, Postgres, dbt) en bloques separados para mantener cada componente independiente y facilitar debugging.
+- Decidi separar Airbyte, Airflow (Astro CLI) y los servicios de infraestructura (MinIO, Postgres, dbt) en bloques separados para mantener cada componente independiente concepto de atomicidad.
 - Montar volumenes en Docker Compose para los proyectos de dbt facilita el desarrollo local y evitar rebuilds constantes.
 - Usar `docker exec` para entrar en contenedores individuales y probar comandos agiliza el desarrollo.
-- Variables sensibles se manejan mejor con archivos `.env` para no hardcodearlas en configuraciones ni código.
+- Variables sensibles se manejan mejor con archivos `.env` para no hardcodearlas en configuraciones ni codigo.
 
 ## Airbyte
 Initially tried using the AirbyteTriggerSyncOperator from the Airflow Airbyte provider, but I was running Airbyte locally via abctl with a Kubernetes backend (provider kind), and it wasn't compatible out-of-the-box with the provider's expectations (like using basic auth or no auth). I also had to implement token-based authentication using the OAuth2 client credentials flow, which isn't supported by the standard operator. Because of this, I implemented a custom sync trigger function that handles both the token refresh and sync logic, and that ended up being more flexible and reliable in my setup.
@@ -38,8 +38,9 @@ In this case running Airbyte via abctl + Kubernetes + kind provider (non-default
 
 ## Airflow & Astro CLI
 
-- Ejecutar Airflow con Astro CLI es cómodo y está separado del resto de servicios, pero puede complicar la sincronización con otros contenedores en la red Docker.
-- En un proyecto futuro podría experimentar corriendo Airflow también con Docker Compose para mayor integración.
+- Ejecutar Airflow con Astro CLI es practico ya que proporciona la estructura de un proyecto Airflow y este separado del resto de servicios, pero puede complicar la sincronización con otros contenedores en la red Docker.
+- En un proyecto futuro podria experimentar corriendo Airflow también con Docker Compose para mayor integracion.
+O un docker-compose-override.
 
 ## dbt
 
@@ -59,6 +60,7 @@ In this case running Airbyte via abctl + Kubernetes + kind provider (non-default
 - `docker compose up -d --no-deps --build <service>` permite aplicar cambios sin bajar toda la infraestructura.
 - Limpiar recursos no usados con `docker system prune` evita consumo innecesario de espacio.
 - Un `Makefile` con comandos frecuentes puede ahorrar tiempo y reducir errores al tipear.
+- Es fundamental que los containers tengan un volumen montado para asegurar la persistencia.
 
 ---
 
@@ -79,10 +81,10 @@ When running astro dev, your local files (like dbt models and profiles.yml) get 
 
 Permissions matter:
 dbt failed initially due to permission issues writing to logs/dbt.log.
-🔧 Solution: Run chmod -R 777 dbt in the container (or set correct ownership).
+Solution: give permission Run chmod -R 777 dbt in the container.
 
 Environment consistency:
-You used docker exec -it to troubleshoot inside the container. Always test dbt builds from within the same environment Airflow runs them (i.e. the scheduler container).
+Used docker exec -it to troubleshoot inside the container. Always test dbt builds from within the same environment Airflow runs them (i.e. the scheduler container).
 
 3. Dynamic IPs and Hostnames
 
@@ -101,7 +103,7 @@ Airbyte OAuth token required:
 You built a helper to retrieve the token from Airbyte before triggering syncs. This makes your DAG more robust.
 
 dbt via subprocess.run() works but...
-You're currently calling dbt build using Python's subprocess. While functional, this can be improved with Cosmos' DbtTaskGroup for better task separation and observability.
+this way currently calling dbt build using Python's subprocess. While functional, this can be improved with Cosmos' DbtTaskGroup for better task separation and observability.
 
 5. Debugging Best Practices
 
@@ -126,5 +128,3 @@ profiles.yml (unless excluded)
 models/, seeds/, snapshots/, macros/
 
 Clean up .gitignore to avoid accidentally excluding important pieces.
-
-¡Estos apuntes ayudarán a que el proyecto sea más mantenible y escalable a futuro!

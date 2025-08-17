@@ -30,14 +30,14 @@ DBT_DIR = os.getenv("DBT_PROJECT_DIR", "/usr/local/airflow/dags/dbt/maritime_dw"
 
 
 @dag(
-    dag_id="maritime_pipeline_dbt_7",
+    dag_id="maritime_pipeline_ais_api",
     max_active_runs=1,
     schedule_interval=timedelta(minutes=30),
     start_date=datetime(2025, 8, 1, tz="UTC"),
     catchup=False,  # dont think it works well with catchup=True because of the API
-    tags=["maritime", "airbyte", "minio", "dbt"],
+    tags=["ais-api", "airbyte", "minio", "dbt"],
 )
-def pipeline_dbt():
+def pipeline_elt():
 
     @task
     def check_env_vars():
@@ -108,4 +108,4 @@ def pipeline_dbt():
     check_env >> extract >> token >> sync >> dbt_task_group
 
 
-pipeline_dbt()
+pipeline_elt()

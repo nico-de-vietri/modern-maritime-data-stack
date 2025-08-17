@@ -9,6 +9,7 @@ dbt-postgres
 # dbt-duckdb
 # duckdb
 pandas
+# superset requirements were passed thru docker compose bash command
 sqlalchemy
 psycopg2-binary
-great_expectations
+great_expectations # not used yet

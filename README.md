@@ -1,23 +1,23 @@
 Data Engineering Project with Airflow, Airbyte, MinIO, Postgres, and dbt
 EXTRACT – from API to Object Storage
 
-This pipeline connects to a real-time AIS (Automatic Identification System) data stream via WebSocket, processes messages per ship, and stores them efficiently in MinIO.
+This pipeline connects to a real-time AIS (Automatic Identification System) data stream via WebSocket, processes messages per ship, and stores them in MinIO.
 
 Features
 
 Real-time AIS data ingestion (Position, Static Data, Class B Reports)
 
-Batch uploads of ship snapshots to MinIO (JSON Lines)
+Batch uploads of ship snapshots to MinIO (JSON Lines) to mimic batch processing, instead of streaming.
 
-Individual event logging for traceability
+Individual event logging for traceability (just the bucket for the moment)
 
-Automatic reconnection with exponential backoff
+Automatic reconnection with exponential backoff, (by Airflows's default task params)
 
-Per-ship message fusion for accurate state tracking
+Per-ship message fusion for accurate state tracking (custom)
 
 Airflow-ready for scheduling (e.g., every X minutes)
 
-Folder Structure
+Folder Structure for API extract and first load into Minio
 
 Folder Structure
 astro/dags/include/
@@ -25,6 +25,8 @@ astro/dags/include/
 ├── minio_client.py                           # MinIO client and bucket setup
 ├── minio_utils.py                            # Utilities for naming and uploading objects
 ├── main_api_to_minio_snapshot_and_events.py  # Main ingestion logic
+├── airbyte_token_utils.py                    # gets new Airbyte token
+├── airbyte_utils.py                          # custom Airbyte sync trigger 
 
 How it Works
 
@@ -32,7 +34,7 @@ Connect to AIS WebSocket
 
 Endpoint: wss://stream.aisstream.io/v0/stream
 
-Subscribes to [-90, -180] to [90, 180]
+Subscribes to [-90, -180] to [90, 180] (whole world)
 
 Filters message types:
 
@@ -66,15 +68,15 @@ run_ingestion() connects to the AIS stream, listens for a configurable time (def
 Recommended Airflow schedule: every 3 minutes.
 
 Example Log Output:
-📡 Message Received Type: StandardClassBPositionReport
+Message Received Type: StandardClassBPositionReport
 Processing Ship ID: 261002981
 Uploaded batch position_report_20250815T090045603654_654f24.json with 58 records
 
 Error Handling:
 
-Retries with exponential backoff (2^retries sec)
+Retries with exponential backoff 
 
-Max retries: 5 (configurable)
+Max retries: x (configurable)
 
 Handles dropped connections & JSON parsing errors
 
@@ -92,12 +94,22 @@ Triggers a new sync and polls until completion
 
 This method offers more control over authentication, retries, and job tracking than the standard AirbyteTriggerSyncOperator in the current setup.
 
+set up source type minio and destination type postgres
+create connection
+get conn_id for .env see url connections/
+http://localhost:8000/workspaces/97b1302c-3e1e-4ff0-8479-4051ac35d58a/connections/1631d942-dc3a-47ab-aa70-99a48f048c08/status
+connection settings
+sync>manual: Airflow will trigger it
+schema sync mode incremental append + deduped PK UserID
 
 TRANSFORM – modeling for consumption
 
 dbt: transformations and modeling in Postgres
+3 Layer > bronze_clean , silver, gold
+.csv to enrich data
 
 Superset: dashboards and visualization
+ongoing
 
 
 
@@ -139,6 +151,8 @@ astro/dags/include/
 ├── minio_client.py                           # MinIO client and bucket setup
 ├── minio_utils.py                            # Utilities for naming and uploading objects
 ├── main_api_to_minio_snapshot_and_events.py  # Main ingestion logic
+├── airbyte_token_utils.py                    # gets new Airbyte token
+├── airbyte_utils.py                          # custom Airbyte sync trigger 
 
 How it Works
 Connect to AIS WebSocket
