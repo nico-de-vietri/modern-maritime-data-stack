@@ -30,7 +30,7 @@ with gold as (
         cast(eta_timestamp as date) as eta_date, -- date only for grouping
         type,
         _airbyte_extracted_at,
-        upper(vessel_description),
+        upper(vessel_description) as vessel_description,
         flag_country as vessel_flag_country,
         --destination_clean,
         destination_country as destination_country_code,

@@ -54,6 +54,116 @@ models:
         
 
       - name: navigational_status
-        description: "Vessel’s current navigational state"
+        description: "Vessel current navigational state"
         
+
+  - name: bronze_ships
+    description: "Raw ship data including identifiers, name, type, and dimensions"
+    columns:
+      - name: imo_number
+        description: "Unique ship identifier (IMO Number)"
+      - name: name
+        description: "Name of the ship"
+      - name: call_sign
+        description: "Ship's call sign"
+      - name: type
+        description: "Type of the ship"
+      - name: dimension_length
+        description: "Total length of the ship (sum of dimensions A and B)"
+      - name: dimension_width
+        description: "Total width of the ship (sum of dimensions C and D)"
+      - name: _airbyte_extracted_at
+        description: "Timestamp when data was extracted by Airbyte"
+
+  - name: bronze_positions
+    description: "Ship positions and movements, including latitude, longitude, speed, and course"
+    columns:
+      - name: user_id
+        description: "Unique user identifier"
+      - name: latitude
+        description: "Geographic latitude of the ship"
+      - name: longitude
+        description: "Geographic longitude of the ship"
+      - name: speed_over_ground
+        description: "Speed over ground of the ship in knots"
+      - name: course_over_ground
+        description: "Course over ground in degrees"
+      - name: true_heading
+        description: "True heading of the ship"
+      - name: timestamp_raw
+        description: "Original timestamp in bigint format"
+      - name: timestamp_utc
+        description: "Timestamp converted to UTC"
+      - name: imo_number
+        description: "IMO identifier of the ship"
+      - name: user_id_timestamp
+        description: "Unique ID combining user_id and timestamp for incremental loading"
+
+  - name: bronze_status
+    description: "Ship status and flags such as communication, navigational, and signaling states"
+    columns:
+      - name: user_id
+        description: "Unique user identifier"
+      - name: communication_state
+        description: "Communication state"
+      - name: navigational_status
+        description: "Navigational status"
+      - name: rate_of_turn
+        description: "Rate of turn"
+      - name: raim
+        description: "RAIM flag (GPS receiver integrity)"
+      - name: valid
+        description: "Validity indicator of the message"
+      - name: position_accuracy
+        description: "Position accuracy"
+      - name: class_bdsc
+        description: "Class B DSC"
+      - name: class_bband
+        description: "Class B Band"
+      - name: class_bunit
+        description: "Class B Unit"
+      - name: class_bmsg22
+        description: "Class B Message 22"
+      - name: class_bdisplay
+        description: "Class B Display"
+      - name: user_id_extracted_at
+        description: "Unique ID combining user_id and extraction timestamp"
+
+  - name: bronze_messages
+    description: "Metadata of received messages and extraction data"
+    columns:
+      - name: user_id
+        description: "Unique user identifier"
+      - name: message_id
+        description: "Message ID"
+      - name: airbyte_generation_id
+        description: "Airbyte generation ID"
+      - name: _airbyte_extracted_at
+        description: "Extraction timestamp"
+      - name: timestamp_raw
+        description: "Original timestamp in bigint format"
+      - name: ais_version
+        description: "AIS version"
+      - name: source_file_last_modified
+        description: "Last modification timestamp of source file"
+      - name: source_file_url
+        description: "URL of the source file"
+      - name: airbyte_raw_id
+        description: "Raw Airbyte ID"
+      - name: unique_row_id
+        description: "Unique combined ID for incremental loading"
+
+  - name: bronze_destinations
+    description: "Information about ship destinations and ETA"
+    columns:
+      - name: user_id
+        description: "Unique user identifier"
+      - name: destination
+        description: "Reported destination"
+      - name: eta
+        description: "Original JSON field containing Estimated Time of Arrival"
+      - name: estimated_time_arrival
+        description: "Estimated time of arrival extracted from the ETA JSON"
+      - name: user_id_extracted_at
+        description: "Unique combined ID for incremental loading"
       

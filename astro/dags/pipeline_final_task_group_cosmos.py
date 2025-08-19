@@ -32,7 +32,7 @@ DBT_DIR = os.getenv("DBT_PROJECT_DIR", "/usr/local/airflow/dags/dbt/maritime_dw"
 @dag(
     dag_id="maritime_pipeline_ais_api",
     max_active_runs=1,
-    schedule_interval=timedelta(minutes=30),
+    schedule=timedelta(minutes=30),
     start_date=datetime(2025, 8, 1, tz="UTC"),
     catchup=False,  # dont think it works well with catchup=True because of the API
     tags=["ais-api", "airbyte", "minio", "dbt"],
