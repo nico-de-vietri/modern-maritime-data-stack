@@ -1,0 +1,45 @@
+version: 2
+
+models:
+  - name: silver
+    description: "Silver model containing cleaned ship positions with transformed ETA and ship type info"
+    columns:
+      - name: user_id
+        description: "User identifier"
+        tests:
+          - not_null
+
+      - name: name
+        description: "Name of the ship"
+        tests:
+          - not_null
+
+      - name: imo_number
+        description: "IMO number of the ship"
+        tests:
+          - not_null
+          
+
+      - name: eta_timestamp
+        description: "Estimated time of arrival (ETA) as a timestamp"
+        tests:
+          - valid_eta_timestamp
+        
+
+      - name: type
+        description: "Ship type code"
+       
+
+      - name: vessel_type
+        description: "Ship type description from external catalog"
+
+      - name: vessel_group
+        description: "Ship group classification from external catalog"
+
+      - name: latitude
+        description: "Reported latitude"
+        
+
+      - name: longitude
+        description: "Reported longitude"
+       

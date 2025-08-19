@@ -12,5 +12,5 @@ select
     from {{ ref('stg_joins') }} b
     left join {{ ref('ship_types') }} s on b.type = s.vessel_type
     left join {{ ref('mid_country') }} c on b.mid = c.mid
-    where b.name is not null and b.destination is not null
+    
 

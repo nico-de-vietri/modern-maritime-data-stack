@@ -1,62 +1,7 @@
 version: 2
 
 models:
-  - name: bronze_clean
-    description: "Raw data cleaned from Airbyte bronze layer with JSON unnesting and deduplication logic"
-    columns:
-      - name: user_id
-        description: "Primary vessel or ship identifier"
-        tests:
-          - not_null
-
-      - name: _airbyte_extracted_at
-        description: "Timestamp of when the record was extracted by Airbyte"
-        tests:
-          - not_null
-
-      - name: unique_row_id
-        description: "UserID combined with extracted timestamp to create a unique key"
-        tests:
-          - not_null
-          - unique
-
-      - name: latitude
-        description: "Geographic latitude of vessel"
-        tests:
-          - dbt_expectations.expect_column_values_to_be_between:
-              min_value: -90
-              max_value: 90
-
-      - name: longitude
-        description: "Geographic longitude of vessel"
-        tests:
-          - dbt_expectations.expect_column_values_to_be_between:
-              min_value: -180
-              max_value: 180
-
-      - name: estimated_time_arrival
-        description: "ETA parsed from JSON field"
-        
-
-      - name: speed_over_ground
-        description: "Vessel speed"
-        tests:
-          - dbt_expectations.expect_column_values_to_be_between:
-              min_value: 0
-              max_value: 300  # adjust based on known max speed if needed
-
-      - name: name
-        description: "Name of the vessel"
-       
-    
-      - name: destination
-        description: "Reported destination of the vessel"
-        
-
-      - name: navigational_status
-        description: "Vessel current navigational state"
-        
-
+  
   - name: bronze_ships
     description: "Raw ship data including identifiers, name, type, and dimensions"
     columns:
