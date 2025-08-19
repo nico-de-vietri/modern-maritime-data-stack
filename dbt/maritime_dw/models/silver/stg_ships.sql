@@ -1,5 +1,6 @@
-{{ config(materialized='incremental', unique_key='_airbyte_extracted_at') }}
+{{ config(materialized='incremental', unique_key='user_id') }}
     select
+        user_id,
         _airbyte_extracted_at,
         trim(name) as name,
         dimension_length::int,

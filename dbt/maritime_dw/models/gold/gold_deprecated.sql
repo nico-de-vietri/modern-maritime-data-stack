@@ -54,11 +54,4 @@ with gold as (
         end as distance_to_destination_kilometers
 
     from gold
-    where
-    eta_timestamp is not null
-    and latitude is not null
-    and longitude is not null
-    and speed_over_ground between 0 and 58
-    and not (latitude = 0 and longitude = 0)
-
   

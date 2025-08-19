@@ -1,10 +1,11 @@
 {{ config(
     materialized='incremental',
-    unique_key='imo_number'
+    unique_key='user_id'
 ) }}
 
 with ranked_ships as (
     select
+        "UserID"::bigint as user_id,
         "ImoNumber"::bigint as imo_number,
         "Name"::varchar as name,
         "CallSign"::varchar as call_sign,
@@ -14,7 +15,7 @@ with ranked_ships as (
         _airbyte_extracted_at::timestamp with time zone as _airbyte_extracted_at,
         row_number() OVER (PARTITION BY "ImoNumber" ORDER BY _airbyte_extracted_at desc) as row_num
     from {{ source('raw_data', 'bronze') }}
-    where "ImoNumber" is not null
+    where "UserID" is not null
 )
 
 select *

@@ -27,7 +27,7 @@
 
     from {{ ref('stg_messages') }} m
     left join {{ ref('stg_positions') }} p on m.user_id=p.user_id
-    left join {{ ref('stg_ships') }} s on p.imo_number = s.imo_number
+    left join {{ ref('stg_ships') }} s on  m.user_id = s.user_id
     left join {{ ref('stg_status') }} st on m.user_id=st.user_id
     left join {{ ref('stg_destinations') }} d on m.user_id=d.user_id
     --where s.name is not null and d.eta is not null and d.destination is not null
