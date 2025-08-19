@@ -1,45 +1,127 @@
 version: 2
 
 models:
+  
   - name: silver
-    description: "Silver model containing cleaned ship positions with transformed ETA and ship type info"
+    description: "Incremental model combining enriched silver data with port and country info."
     columns:
-      - name: user_id
-        description: "User identifier"
+      - name: unique_row_id
+        description: "Unique identifier for each row."
+        tests:
+          - unique
+          - not_null
+      - name: navigation_status
+        description: "Description of the vessel's navigation status."
+      - name: destination_country
+        description: "Country code of the destination."
+      - name: country_name
+        description: "Full name of the destination country."
+      - name: matched_port
+        description: "Port matched by name or fallback location."
+      - name: latitude_destination
+        description: "Latitude of the destination port."
+      - name: longitude_destination
+        description: "Longitude of the destination port."
+      # Add more columns as needed
+
+  - name: silver_enriched
+    description: "View model adding vessel description and flag country to enriched silver data."
+    columns:
+      - name: destination_clean
+        description: "Cleaned and normalized destination name."
+      - name: dest_country_guess
+        description: "First part of the destination for fallback matching."
+      - name: dest_loc_guess
+        description: "Second part of the destination for fallback matching."
+
+  - name: stg_destinations
+    description: "Incremental staging model with filtered destinations and ETA fields."
+    columns:
+      - name: unique_row_id
+        tests:
+          - unique
+          - not_null
+      - name: destination
         tests:
           - not_null
-
-      - name: name
-        description: "Name of the ship"
-        tests:
-          - not_null
-
-      - name: imo_number
-        description: "IMO number of the ship"
-        tests:
-          - not_null
-          
-
+      - name: eta
+        description: "Raw ETA JSON object."
+      - name: eta_month
+        description: "Extracted month from ETA."
+      - name: eta_day
+        description: "Extracted day from ETA."
+      - name: eta_hour
+        description: "Extracted hour from ETA."
+      - name: eta_minute
+        description: "Extracted minute from ETA."
       - name: eta_timestamp
-        description: "Estimated time of arrival (ETA) as a timestamp"
+        description: "Parsed ETA timestamp."
+
+  - name: stg_messages
+    description: "Incremental staging model with user and timestamp info."
+    columns:
+      - name: unique_row_id
         tests:
-          - valid_eta_timestamp
-        
+          - unique
+          - not_null
+      - name: user_id
+        description: "User identifier."
+      - name: mid
+        description: "MID extracted from user_id."
+      - name: _airbyte_extracted_at
+        description: "Extraction timestamp."
 
-      - name: type
-        description: "Ship type code"
-       
-
-      - name: vessel_type
-        description: "Ship type description from external catalog"
-
-      - name: vessel_group
-        description: "Ship group classification from external catalog"
-
+  - name: stg_positions
+    description: "Incremental staging model with vessel position and movement info."
+    columns:
+      - name: _airbyte_extracted_at
+        tests:
+          - not_null
+      - name: user_id
+      - name: imo_number
       - name: latitude
-        description: "Reported latitude"
-        
-
       - name: longitude
-        description: "Reported longitude"
-       
+      - name: speed_over_ground
+      - name: course_over_ground
+
+  - name: stg_ships
+    description: "Incremental staging model with vessel ship details."
+    columns:
+      - name: _airbyte_extracted_at
+        tests:
+          - not_null
+      - name: name
+        tests:
+          - not_null
+      - name: dimension_length
+      - name: dimension_width
+      - name: type
+      - name: imo_number
+
+  - name: stg_status
+    description: "Incremental staging model for vessel navigational status."
+    columns:
+      - name: unique_row_id
+        tests:
+          - unique
+          - not_null
+      - name: user_id
+      - name: navigational_status
+
+  - name: ports
+    description: "Ephemeral model derived from port_codes seed with parsed coordinates."
+    columns:
+      - name: port_name
+        description: "Uppercase and trimmed port name."
+        tests:
+          - not_null
+      - name: location_code
+        description: "Location code of the port."
+      - name: country_code
+        description: "Country code of the port."
+      - name: coordinates
+        description: "Raw coordinates string."
+      - name: latitude_destination
+        description: "Latitude parsed from coordinates."
+      - name: longitude_destination
+        description: "Longitude parsed from coordinates."

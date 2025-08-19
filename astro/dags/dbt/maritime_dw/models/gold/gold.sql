@@ -1,14 +1,19 @@
 {{ config(materialized='table') }}
 
-with gold as (
-    select distinct *
-    from (
-        select *,
-            row_number() over (partition by user_id order by _airbyte_extracted_at desc) as rn
-        from {{ ref('silver') }}
-        where eta_timestamp is not null
-    ) t
-    where rn = 1
+with ranked as (
+    select
+        *,
+        row_number() over (
+            partition by user_id 
+            order by _airbyte_extracted_at desc
+        ) as rn1
+    from {{ ref('silver') }}
+),
+
+gold as (
+    select *
+    from ranked
+    where rn1 = 1
 )
 
 
@@ -30,7 +35,7 @@ with gold as (
         cast(eta_timestamp as date) as eta_date, -- date only for grouping
         type,
         _airbyte_extracted_at,
-        upper(vessel_description),
+        upper(vessel_description) as vessel_description,
         flag_country as vessel_flag_country,
         --destination_clean,
         destination_country as destination_country_code,
@@ -54,4 +59,7 @@ with gold as (
         end as distance_to_destination_kilometers
 
     from gold
+    where speed_over_ground < 58
+   
+
   
