@@ -19,7 +19,8 @@ with silver as(
             p2.port_name
         ) as matched_port,
         coalesce(p1.latitude_destination, p2.latitude_destination) as latitude_destination,
-        coalesce(p1.longitude_destination, p2.longitude_destination) as longitude_destination
+        coalesce(p1.longitude_destination, p2.longitude_destination) as longitude_destination,
+        row_number() over (partition by e.unique_row_id order by e._airbyte_extracted_at desc) as rn
 
     from {{ ref('silver_enriched') }} e
 
@@ -39,6 +40,7 @@ with silver as(
 
 select * 
 from silver
+where rn = 1
 {% if is_incremental() %}
-where _airbyte_extracted_at > (select coalesce(max(_airbyte_extracted_at), '1900-01-01'::timestamp) FROM {{ this }})
+and _airbyte_extracted_at > (select coalesce(max(_airbyte_extracted_at), '1900-01-01'::timestamp) from {{ this }})
 {% endif %}
