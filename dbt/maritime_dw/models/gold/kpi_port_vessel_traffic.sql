@@ -2,8 +2,9 @@
 
 select
     port_name,
-    count(distinct user_id) as vessel_visits
+    count(*) as vessel_visits
 from {{ ref('gold') }}
+where port_name is not null
 group by port_name
 order by vessel_visits desc
 limit 20

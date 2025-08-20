@@ -152,3 +152,4 @@ The following models were built on top of the `gold` table to support analytical
 
 ![alt text](image.png)
 
+
