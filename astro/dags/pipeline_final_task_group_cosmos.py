@@ -14,8 +14,9 @@ from cosmos import (
     ExecutionConfig,
 )
 from cosmos.profiles import PostgresUserPasswordProfileMapping
-from include.airbyte_utils import trigger_airbyte_sync
-from include.airbyte_token_utils import get_token
+from include.airbyte_utils import trigger_airbyte_sync, get_token
+
+# from include.airbyte_token_utils import get_token
 import subprocess
 import logging
 

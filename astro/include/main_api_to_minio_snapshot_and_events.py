@@ -4,12 +4,18 @@ import asyncio
 import time
 from dotenv import load_dotenv
 
-from include.minio_client import get_minio_client, ensure_bucket
+# from include.minio_client import get_minio_client, ensure_bucket
 from include.ais_websocket import listen_and_process
-from include.minio_utils import generate_object_name, upload_json
+from include.minio_utils import (
+    generate_object_name,
+    upload_json,
+    get_minio_client,
+    ensure_bucket,
+)
 
 # Cargamos variables de entorno desde el .env
-load_dotenv(os.path.join(os.path.dirname(os.path.dirname(__file__)), ".env"))
+# load_dotenv(os.path.join(os.path.dirname(os.path.dirname(__file__)), ".env"))
+load_dotenv()
 
 BUCKET_SNAPSHOT_NAME = os.getenv("MINIO_BUCKET")
 BUCKET_EVENTS_NAME = os.getenv("MINIO_BUCKET_EVENTS")
